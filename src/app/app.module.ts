@@ -7,18 +7,24 @@ import { AppComponent } from './app.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {RegistrationComponent} from "./registration/registration.component";
 
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

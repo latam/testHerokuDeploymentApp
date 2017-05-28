@@ -1,0 +1,51 @@
+<form class="form-horizontal" (ngSubmit)="onSubmit()" registrationForm="ngForm">
+  <fieldset>
+    <legend>Rejestracja</legend>
+    <div class="form-group">
+      <label for="inputUsername" class="col-lg-2 control-label">Nazwa użytkownika</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputUsername" placeholder="Username"
+                required
+                [(ngModel)]="registrationData.userName" name="userName">
+      </div>
+    </div>
+    <div class="form-group has-error">
+      <label for="inputPassword" class="col-lg-2 control-label">Hasło</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+               required
+               [(ngModel)]="registrationData.password" name="password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email"
+               required
+               [(ngModel)]="registrationData.email" name="email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputFirstName" class="col-lg-2 control-label">Imię</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputFirstName" placeholder="First name"
+               required
+               [(ngModel)]="registrationData.firstName" name="firstName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputLastName" class="col-lg-2 control-label">Nazwisko</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Last name"
+               required
+               [(ngModel)]="registrationData.lastName" name="lastName">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Wyczyść</button>
+        <button type="submit" class="btn btn-primary">Rejestruj</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

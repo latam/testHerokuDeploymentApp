@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 const appRoutes: Routes = [
   {
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

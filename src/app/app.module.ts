@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {Angular2FontawesomeModule} from "angular2-fontawesome";
 
 const appRoutes: Routes = [
   {
@@ -26,8 +25,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    NgbModule.forRoot(),
-    Angular2FontawesomeModule
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

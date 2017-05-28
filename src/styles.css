@@ -1,2 +1,129 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~font-awesome/css/font-awesome.css';
+
+body {
+  font-size: 0.8em;
+  font-family: "Century Gothic";
+}
+
+div.spacer {
+  height: 5rem;
+}
+
+.modal-content {
+  border: 1px solid #eeeeee;
+  border-radius: 0;
+  outline: 0;
+}
+
+.modal-header {
+  padding: 10px;
+  color: white;
+  background-color: #0275d8;
+  margin-bottom: 0;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.modal-body {
+  padding: 10px;
+  border: 1px solid #292b2c;
+}
+
+.form-control {
+  border-radius: 0;
+  font-size: 0.8rem;
+}
+
+.thead-primary th {
+  color: #FCFCFC;
+  background-color: #0275d8;
+}
+
+@media (min-width: 576px) {
+  .hidden {
+    display: none;
+  }
+
+  .container.login {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hidden {
+    display: table-cell;
+  }
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: calc(2rem + 2px);
+}
+
+div.form-group div.col-lg-10 {
+  max-width: 100%;
+}
+
+.btn {
+  border-radius: 0rem;
+}
+
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 0;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+  border-radius: 0;
+}
+
+
+
+div.btn-container {
+  margin: 10px 0 10px 0;
+}
+
+.card {
+  border-radius: 0;
+  margin: 0.5rem 0;
+}
+
+.card-header {
+  padding: 0.2rem 1.25rem;
+  color: white;
+  background-color: #0275d8;
+  border-radius: 0;
+}
+
+.card-header:first-child {
+  border-radius: 0;
+}
+
+.card-block {
+  padding: 0.8rem 1.25rem;
+}
+
+.card-header i {
+  margin-right: 10px;
+}
+
+i.icon-btn {
+  margin: 0 10px 0 10px;
+}
+
+li.nav-item {
+  font-size: 1rem;
+}
+
+hr {
+  margin-top: 0.2rem;
+}

@@ -20,9 +20,6 @@ export class AppComponent implements OnInit {
 
   checkCredentials() {
     this.loggedIn = this.authenticationService.isLoggedIn();
-    if(!this.loggedIn) {
-      this.router.navigate(['login']);
-    }
   }
 
   get LoggedInMod() {

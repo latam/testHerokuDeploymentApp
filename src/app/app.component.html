@@ -1,7 +1,29 @@
-<h1>
-  {{title}}
-  <button type="button" class="btn btn-primary btn-md">
-    <i class="fa fa-american-sign-language-interpreting fa-5x" aria-hidden="true"> </i>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
+  <a class="navbar-brand" href="#" routerLink="/">Company Finances</a>
+  <div class="collapse navbar-collapse" id="navbarContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngIf="LoggedInMod">
+        <a class="nav-link" routerLink="/company" routerLinkActive="active">Firma</a>
+      </li>
+      <li class="nav-item" *ngIf="LoggedInMod">
+        <a class="nav-link" routerLink="/operations" routerLinkActive="active">Operacje</a>
+      </li>
+      <li class="nav-item" *ngIf="LoggedInMod">
+        <a class="nav-link" routerLink="/vat-registry" routerLinkActive="active">Rejestr VAT</a>
+      </li>
+      <li class="nav-item" *ngIf="LoggedInMod">
+        <a class="nav-link" routerLink="/kpir-registry" routerLinkActive="active">Księga PiR</a>
+      </li>
+      <li class="nav-item" *ngIf="LoggedInMod">
+        <a class="nav-link" (click)="logout()">Wyloguj</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
   <router-outlet></router-outlet>
-</h1>
+</div>
+

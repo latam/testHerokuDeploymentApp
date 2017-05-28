@@ -1,0 +1,69 @@
+<div class="spacer"></div>
+<h4>Operacje</h4>
+<hr />
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-filter" aria-hidden="true"></i>
+    Filtrowanie
+  </div>
+  <div class="card-block">
+    <date-filter (filterCriteriaChanged)="onDateFilterCriteriaChanged($event)"></date-filter>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-asterisk" aria-hidden="true"></i>
+    Akcje
+  </div>
+  <div class="card-block">
+    <div class="btn-group">
+      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dodaj przychód
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" role="button" (click)="openModal('Faktura VAT', false)">Faktura VAT</a>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dodaj rozchód
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" role="button" (click)="openModal('Faktura VAT', true)">Faktura VAT</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-sm table-bordered table-striped">
+  <thead class="thead-primary">
+  <tr>
+    <th>Data</th>
+    <th>Typ</th>
+    <th>Rodzaj</th>
+    <th>Numer dokumentu</th>
+    <th>Kontrahent</th>
+    <th>Opis</th>
+    <th>Stawka VAT</th>
+    <th>Netto</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let operation of operationsData">
+    <td>{{operation.date}}</td>
+    <td>{{operation.type}}</td>
+    <td>{{operation.purchase?"Rozchód":"Przychód"}}</td>
+    <td>{{operation.docNumber}}</td>
+    <td>{{operation.contractor.name}}</td>
+    <td>{{operation.description}}</td>
+    <td>{{operation.vatBid}}%</td>
+    <td>{{operation.nettoValue | number:'.2-2'}} PLN</td>
+    <td>
+      <button type="button" class="btn btn-danger btn-xs">
+        <i class="fa fa-times" (click)="activeModal.close()"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

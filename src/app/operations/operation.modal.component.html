@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{title}}</h5>
+  <div>
+    <i class="fa fa-times fa-3x icon-btn" (click)="activeModal.close()"></i>
+    <i class="fa fa-check fa-3x icon-btn" (click)="onSubmit()"></i>
+  </div>
+</div>
+<div class="modal-body">
+
+  <form class="form-horizontal" (submit)="onSubmit()" operationForm="ngForm">
+    <fieldset>
+      <div class="form-group">
+        <label for="inputDate" class="col-lg-4 control-label">Data</label>
+        <div class="col-lg-14">
+          <input class="form-control" id="inputDate" placeholder="yyyy-mm-dd" (click)="d.toggle()"
+                 name="dp" required [(ngModel)]="ngbDateStruct" ngbDatepicker #d="ngbDatepicker">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputContractor" class="col-lg-4 control-label">Kontrahent</label>
+        <div class="col-lg-14">
+          <select class="form-control" id="inputContractor"
+                  required
+                  [(ngModel)]="selectedContractorMod" name="contractor">
+            <option *ngFor="let company of companiesData" [ngValue]="company">{{company.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDocNumber" class="col-lg-4 control-label">Numer dokumentu</label>
+        <div class="col-lg-14">
+          <input type="text" class="form-control" id="inputDocNumber" placeholder="Numer dokumentu"
+                 required
+                 [(ngModel)]="operation.docNumber" name="docNumber">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDescription" class="col-lg-4 control-label">Opis</label>
+        <div class="col-lg-14">
+          <input type="text" class="form-control" id="inputDescription" placeholder="Opis"
+                 required
+                 [(ngModel)]="operation.description" name="description">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputKpir" class="col-lg-4 control-label">Księga przychodów i rozchodów</label>
+        <div class="col-lg-14">
+          <select class="form-control" id="inputKpir"
+                  required
+                  [(ngModel)]="selectedKpirColumnMod" name="selectedKpirColumn">
+            <option *ngFor="let kpirColumn of kpirColumns" [ngValue]="kpirColumn">{{kpirColumn.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputNettoValue" class="col-lg-4 control-label">Wartość NETTO</label>
+        <div class="col-lg-14">
+          <input type="text" class="form-control" id="inputNettoValue" placeholder="0"
+                 required
+                 [(ngModel)]="operation.nettoValue" name="nettoValue">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputVatBid" class="col-lg-4 control-label">Stawka VAT</label>
+        <div class="col-lg-14">
+          <select class="form-control" id="inputVatBid"
+                  required
+                  [(ngModel)]="operation.vatBid" name="type">
+            <option>23</option>
+            <option>7</option>
+            <option>3</option>
+            <option>0</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

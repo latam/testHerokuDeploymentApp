@@ -1,0 +1,73 @@
+<div class="spacer"></div>
+<h4>Rejestr VAT</h4>
+<hr/>
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-filter" aria-hidden="true"></i>
+    Filtrowanie
+  </div>
+  <div class="card-block">
+    <form class="form-inline">
+      <div class="form-group row">
+        <label for="inputMonth" class="col-sm-4 control-label">Miesiąc</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="inputMonth"
+                  required
+                  [(ngModel)]="selectedMonthMod" name="selectedMonth">
+            <option *ngFor="let month of monthsData" [ngValue]="month">{{month.monthText}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputYear" class="col-sm-4 control-label">Rok</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="inputYear"
+                  required
+                  [(ngModel)]="selectedYearMod" name="year">
+            <option *ngFor="let year of yearsData" [ngValue]="year">{{year}}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-asterisk" aria-hidden="true"></i>
+    Akcje
+  </div>
+  <div class="card-block">
+    <button type="button" class="btn btn-success btn-sm" (click)="getReport()">
+      <i class="fa fa-file-pdf-o"></i>
+      Raport
+    </button>
+  </div>
+</div>
+<table class="table table-sm table-bordered table-striped">
+  <thead class="thead-primary">
+  <tr>
+    <th>L.p.</th>
+    <th>Data</th>
+    <th>Rejestr</th>
+    <th>Numer dokumentu</th>
+    <th>Kontrahent</th>
+    <th>Opis</th>
+    <th>Stawka VAT</th>
+    <th>Wartość Netto</th>
+    <th>Kwota VAT</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let registry of registriesData">
+    <td>{{registry.position}}</td>
+    <td>{{registry.date}}</td>
+    <td>{{registry.purchase?"Rozchód":"Przychód"}}</td>
+    <td>{{registry.docNumber}}</td>
+    <td>{{registry.contractor.name}}</td>
+    <td>{{registry.description}}</td>
+    <td>{{registry.vatBid}}%</td>
+    <td>{{registry.nettoValue| number:'.2-2'}} PLN</td>
+    <td>{{registry.vatValue| number:'.2-2'}} PLN</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,73 @@
+<div class="spacer"></div>
+<h4>Firma użytkownika</h4>
+<hr/>
+
+<table class="table table-sm table-bordered">
+  <thead class="thead-primary">
+  <tr>
+    <th>Nazwa</th>
+    <th>Ulica</th>
+    <th>Kod pocztowy</th>
+    <th>Miasto</th>
+    <th>Nip</th>
+    <th>Regon</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{companyData.name}}</td>
+    <td>{{companyData.street}}</td>
+    <td>{{companyData.postalCode}}</td>
+    <td>{{companyData.city}}</td>
+    <td>{{companyData.nip}}</td>
+    <td>{{companyData.regon}}</td>
+    <td>
+      <button type="button" class="btn btn-primary btn-xs" (click)="openModal(companyData)">
+        <i class="fa fa-pencil"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h4>Kontrahenci</h4>
+<hr />
+<table class="table table-sm table-bordered table-striped">
+  <thead class="thead-primary">
+  <tr>
+    <th>Nazwa</th>
+    <th>Ulica</th>
+    <th>Kod pocztowy</th>
+    <th>Miasto</th>
+    <th>Nip</th>
+    <th>Regon</th>
+    <th>
+      <button type="button" class="btn btn-success btn-xs" (click)="openModal(null)">
+        <i class="fa fa-plus"></i>
+      </button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let contractor of contractorsData">
+    <td>{{contractor.name}}</td>
+    <td>{{contractor.street}}</td>
+    <td>{{contractor.postalCode}}</td>
+    <td>{{contractor.city}}</td>
+    <td>{{contractor.nip}}</td>
+    <td>{{contractor.regon}}</td>
+    <td>
+      <button type="button" class="btn btn-danger btn-xs">
+        <i class="fa fa-times"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-xs" (click)="openModal(contractor)">
+        <i class="fa fa-pencil"></i>
+      </button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+

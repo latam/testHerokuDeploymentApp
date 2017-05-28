@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h5 class="modal-title">Edycja firmy</h5>
+  <div>
+    <i class="fa fa-times fa-3x icon-btn" (click)="activeModal.close()"></i>
+    <i class="fa fa-check fa-3x icon-btn" (click)="onSubmit()"></i>
+  </div>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal" (ngSubmit)="onSubmit()" companyForm="ngForm">
+    <fieldset>
+      <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label">Nazwa firmy</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputName" placeholder="Nazwa firmy"
+                 required
+                 [(ngModel)]="companyData.name" name="name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputStreet" class="col-lg-2 control-label">Ulica</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputStreet" placeholder="Ulica"
+                 required
+                 [(ngModel)]="companyData.street" name="street">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPostal" class="col-lg-2 control-label">Kod pocztowy</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputPostal" placeholder="12-123"
+                 required
+                 [(ngModel)]="companyData.postalCode" name="postalCode">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputCity" class="col-lg-2 control-label">Miasto</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputCity" placeholder="Miasto"
+                 required
+                 [(ngModel)]="companyData.city" name="city">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputNip" class="col-lg-2 control-label">Nip</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputNip" placeholder="1234567890"
+                 required
+                 [(ngModel)]="companyData.nip" name="nip">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputRegon" class="col-lg-2 control-label">Regon</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputRegon" placeholder="123456789"
+                 required
+                 [(ngModel)]="companyData.regon" name="regon">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

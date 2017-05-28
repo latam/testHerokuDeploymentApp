@@ -1,0 +1,16 @@
+<form class="form-inline">
+  <div class="form-group">
+    <label for="filterFromDate" class="col-lg-2 control-label">Od</label>
+    <div class="col-lg-10">
+      <input class="form-control" id="filterFromDate" placeholder="yyyy-mm-dd" (click)="fromDatePicker.toggle()"
+             name="fromDP" required [(ngModel)]="ngbFromDateMod" ngbDatepicker #fromDatePicker="ngbDatepicker">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="filterToDate" class="col-lg-2 control-label">Do</label>
+    <div class="col-lg-10">
+      <input class="form-control" id="filterToDate" placeholder="yyyy-mm-dd" (click)="toDatePicker.toggle()"
+             name="toDP" required [(ngModel)]="ngbToDateMod" ngbDatepicker #toDatePicker="ngbDatepicker">
+    </div>
+  </div>
+</form>

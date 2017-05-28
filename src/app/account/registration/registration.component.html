@@ -1,51 +1,120 @@
-<form class="form-horizontal" (ngSubmit)="onSubmit()" registrationForm="ngForm">
-  <fieldset>
-    <legend>Rejestracja</legend>
-    <div class="form-group">
-      <label for="inputUsername" class="col-lg-2 control-label">Nazwa użytkownika</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputUsername" placeholder="Username"
-                required
-                [(ngModel)]="registrationData.userName" name="userName">
+<div class="spacer"></div>
+<div class="container login">
+  <h4>Rejestracja</h4>
+  <hr/>
+
+  <form class="form-horizontal" (ngSubmit)="onSubmit()" registrationForm="ngForm">
+    <fieldset>
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          Użytkownik
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <label for="inputUsername" class="col-lg-2 control-label">Nazwa użytkownika</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputUsername" placeholder="Username"
+                     required
+                     [(ngModel)]="registrationData.userName" name="userName">
+            </div>
+          </div>
+          <div class="form-group has-error">
+            <label for="inputPassword" class="col-lg-2 control-label">Hasło</label>
+            <div class="col-lg-10">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                     required
+                     [(ngModel)]="registrationData.password" name="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputEmail" placeholder="Email"
+                     required
+                     [(ngModel)]="registrationData.email" name="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputFirstName" class="col-lg-2 control-label">Imię</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputFirstName" placeholder="First name"
+                     required
+                     [(ngModel)]="registrationData.firstName" name="firstName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputLastName" class="col-lg-2 control-label">Nazwisko</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputLastName" placeholder="Last name"
+                     required
+                     [(ngModel)]="registrationData.lastName" name="lastName">
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group has-error">
-      <label for="inputPassword" class="col-lg-2 control-label">Hasło</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password"
-               required
-               [(ngModel)]="registrationData.password" name="password">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          Firma
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Nazwa firmy</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputName" placeholder="Nazwa firmy"
+                     required
+                     [(ngModel)]="registrationData.company.name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputStreet" class="col-lg-2 control-label">Ulica</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputStreet" placeholder="Ulica"
+                     required
+                     [(ngModel)]="registrationData.company.street" name="street">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPostal" class="col-lg-2 control-label">Kod pocztowy</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputPostal" placeholder="12-123"
+                     required
+                     [(ngModel)]="registrationData.company.postalCode" name="postalCode">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputCity" class="col-lg-2 control-label">Miasto</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputCity" placeholder="Miasto"
+                     required
+                     [(ngModel)]="registrationData.company.city" name="city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputNip" class="col-lg-2 control-label">Nip</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputNip" placeholder="1234567890"
+                     required
+                     [(ngModel)]="registrationData.company.nip" name="nip">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputRegon" class="col-lg-2 control-label">Regon</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputRegon" placeholder="123456789"
+                     required
+                     [(ngModel)]="registrationData.company.regon" name="regon">
+            </div>
+          </div>\
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary btn-block btn-md">Rejestruj</button>
+              <button type="reset" class="btn btn-danger btn-block btn-md">Wyczyść</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email"
-               required
-               [(ngModel)]="registrationData.email" name="email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputFirstName" class="col-lg-2 control-label">Imię</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputFirstName" placeholder="First name"
-               required
-               [(ngModel)]="registrationData.firstName" name="firstName">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputLastName" class="col-lg-2 control-label">Nazwisko</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputLastName" placeholder="Last name"
-               required
-               [(ngModel)]="registrationData.lastName" name="lastName">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Wyczyść</button>
-        <button type="submit" class="btn btn-primary">Rejestruj</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
+    </fieldset>
+  </form>
+</div>

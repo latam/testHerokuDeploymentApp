@@ -1,5 +1,5 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#" routerLink="/">Company Finances</a>
@@ -22,7 +22,17 @@
       </li>
     </ul>
   </div>
+  <div class="collapse navbar-toggleable-xs" id="navbar">
+    <nav class="nav navbar-nav pull-xs-left">
+      <a class="nav-item nav-link" *ngIf="LoggedInMod" routerLink="/company" routerLinkActive="active">Firma</a>
+      <a class="nav-item nav-link" *ngIf="LoggedInMod" routerLink="/operations" routerLinkActive="active">Operacje</a>
+      <a class="nav-item nav-link" *ngIf="LoggedInMod" routerLink="/vat-registry" routerLinkActive="active">Rejestr VAT</a>
+      <a class="nav-item nav-link" *ngIf="LoggedInMod" routerLink="/kpir-registry" routerLinkActive="active">Księga PiR</a>
+      <a class="nav-item nav-link" *ngIf="LoggedInMod" (click)="logout()">Wyloguj</a>
+    </nav>
+  </div>
 </nav>
+
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>

@@ -21,7 +21,7 @@
         Dodaj przychód
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" role="button" (click)="openModal('Faktura VAT', false)">Faktura VAT</a>
+        <a class="dropdown-item" role="button" (click)="openOperationEditionModal('Faktura VAT', false)">Faktura VAT</a>
       </div>
     </div>
     <div class="btn-group">
@@ -29,7 +29,7 @@
         Dodaj rozchód
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" role="button" (click)="openModal('Faktura VAT', true)">Faktura VAT</a>
+        <a class="dropdown-item" role="button" (click)="openOperationEditionModal('Faktura VAT', true)">Faktura VAT</a>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
     <td>{{operation.nettoValue | number:'.2-2'}} PLN</td>
     <td>
       <button type="button" class="btn btn-danger btn-xs">
-        <i class="fa fa-times" (click)="activeModal.close()"></i>
+        <i class="fa fa-times" (click)="deleteOperation(operation.id)"></i>
       </button>
     </td>
   </tr>

@@ -9,7 +9,7 @@ import {DateFilterCriteria} from "./date.filter.criteria";
 export class DateFilterComponent implements OnInit{
   private date = new Date();
   private ngbFromDate = { day: 1, month: this.date.getMonth()+1, year: this.date.getFullYear()};
-  private ngbToDate = { day: this.date.getDay(), month: this.date.getMonth()+1, year: this.date.getFullYear()};
+  private ngbToDate = { day: this.date.getDate(), month: this.date.getMonth()+1, year: this.date.getFullYear()};
 
   @Output()
   public filterCriteriaChanged:EventEmitter<DateFilterCriteria> = new EventEmitter();
@@ -31,6 +31,7 @@ export class DateFilterComponent implements OnInit{
     let fromDateString = this.datePipe.transform(fromDate, 'yyyy-MM-dd');
 
     let dateFilterCriteria = new DateFilterCriteria(fromDateString, toDateString);
+    console.log("Filter criteria: FROM: " + dateFilterCriteria.fromDate + " TO: " + dateFilterCriteria.toDate);
     this.filterCriteriaChanged.emit(dateFilterCriteria);
   }
 

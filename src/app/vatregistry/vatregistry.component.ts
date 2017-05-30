@@ -1,40 +1,32 @@
-/**
- * Created by Mateusz on 24.04.2017.
- */
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {VatRegistryData} from "./vatregistry.model";
 import {VatRegistryService} from "../service/vatregistry.service";
-import {MONTHS, MonthStruct} from "../globals";
 
 import * as FileSaver from 'file-saver';
+import {PeriodFilterCriteria} from "../common/filter/period.filter.criteria";
+import {ErrorResponse} from "../common/error.response";
 
 @Component({
   selector: 'vatregistry-view',
   templateUrl: './vatregistry.component.html',
 })
-export class VatRegistryComponent implements OnInit{
+export class VatRegistryComponent {
   registriesData: VatRegistryData[];
-  monthsData = MONTHS;
-  yearsData = [2015, 2016, 2017];
-  selectedMonth: MonthStruct;
-  selectedYear: number;
-  error = '';
+  periodFilterCriteria: PeriodFilterCriteria;
+  error: ErrorResponse;
 
   constructor(
     private registryService: VatRegistryService,
   ) { }
 
-  ngOnInit() {
-    let yearNumber = new Date().getUTCFullYear();
-    let monthNumber = new Date().getUTCMonth()+1;
-    this.selectedMonth = MONTHS[monthNumber];
-    this.selectedYear = yearNumber;
-    this.refreshComponent();
+  onPeriodFilterCriteriaChanged(periodFilterCriteria: PeriodFilterCriteria) {
+    this.periodFilterCriteria = periodFilterCriteria;
+    this.loadRegistryEntries();
   }
 
-  refreshComponent() {
-    this.registryService.getRegistryEntries(this.selectedMonth.monthNumber, this.selectedYear)
+  loadRegistryEntries() {
+    this.registryService.getRegistryEntries(this.periodFilterCriteria.month, this.periodFilterCriteria.year)
      .subscribe(
        registriesData => {
      this.registriesData = registriesData;
@@ -47,35 +39,15 @@ export class VatRegistryComponent implements OnInit{
   }
 
   getReport() {
-    this.registryService.getReport(this.selectedMonth.monthNumber, this.selectedYear)
+    this.registryService.getReport(this.periodFilterCriteria.month, this.periodFilterCriteria.year)
       .subscribe(
         (response) => {
-          FileSaver.saveAs(response, "RejestrVat_"+this.selectedMonth.monthText+this.selectedYear);
+          FileSaver.saveAs(response, "RejestrVat_" + this.periodFilterCriteria.month + "-" +this.periodFilterCriteria.year);
         },
         error => {
           this.error = error;
           console.log(error);
         }
       )
-  }
-
-  get selectedMonthMod() {
-    return this.selectedMonth;
-  }
-
-  set selectedMonthMod(value) {
-    console.log("Search criteria: MONTH changed - " + value.monthText);
-    this.selectedMonth = value;
-    this.refreshComponent();
-  }
-
-  get selectedYearMod() {
-    return this.selectedYear;
-  }
-
-  set selectedYearMod(value) {
-    console.log("Search criteria: YEAR changed - " + value);
-    this.selectedYear = value;
-    this.refreshComponent();
   }
 }

@@ -7,28 +7,7 @@
     Filtrowanie
   </div>
   <div class="card-block">
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="inputMonth" class="col-sm-4 control-label">Miesiąc</label>
-        <div class="col-sm-8">
-          <select class="form-control" id="inputMonth"
-                  required
-                  [(ngModel)]="selectedMonthMod" name="selectedMonth">
-            <option *ngFor="let month of monthsData" [ngValue]="month">{{month.monthText}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputYear" class="col-sm-4 control-label">Rok</label>
-        <div class="col-sm-8">
-          <select class="form-control" id="inputYear"
-                  required
-                  [(ngModel)]="selectedYearMod" name="year">
-            <option *ngFor="let year of yearsData" [ngValue]="year">{{year}}</option>
-          </select>
-        </div>
-      </div>
-    </form>
+    <period-filter (filterCriteriaChanged)="onPeriodFilterCriteriaChanged($event)"></period-filter>
   </div>
 </div>
 <div class="card">

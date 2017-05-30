@@ -5,7 +5,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {AuthenticationService} from "./authentication.service";
 import {OperationData} from "../operations/operations.model";
-import {CompanyService} from "./company.service";
 import {ErrorResponse} from "../common/error.response";
 import {BaseApiPath} from "../globals";
 
@@ -15,8 +14,7 @@ export class OperationsService {
 
 
   constructor(private http: Http,
-              private authenticationService: AuthenticationService,
-              private companyService: CompanyService) {
+              private authenticationService: AuthenticationService) {
   }
 
   getOperations(): Observable<OperationData[]> {
@@ -30,7 +28,7 @@ export class OperationsService {
     return this.http.get(this.companyUrl, options)
       .map((res: Response) => this.mapOperations(res))
       .catch((error: Response) => {
-          let parsedError = this.mapError(error.json());
+          let parsedError = this.mapError(error);
           return Observable.throw(parsedError);
       });
   }
@@ -46,7 +44,7 @@ export class OperationsService {
     return this.http.get(url, options)
       .map((res: Response) => this.mapOperations(res))
       .catch((error: Response) => {
-        let parsedError = this.mapError(error.json());
+        let parsedError = this.mapError(error);
         return Observable.throw(parsedError);
       });
   }
@@ -59,7 +57,17 @@ export class OperationsService {
     });
     let options = new RequestOptions({headers: headers});
     return this.http.post(this.companyUrl, JSON.stringify(operation), options)
-      .map((res: Response) => this.mapOperation(res.json()))
+      .catch((error: Response) => Observable.throw(this.mapError(error)));
+  }
+
+  deleteOperation(operationId: number) {
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'authorization': this.authenticationService.getToken()
+    });
+    let options = new RequestOptions({headers: headers});
+    return this.http.delete(this.companyUrl + '/' + operationId, options)
       .catch((error: Response) => Observable.throw(this.mapError(error)));
   }
 
@@ -96,8 +104,6 @@ export class OperationsService {
       errorCode: r.errorCode,
       devMessage: r.devMessage
     });
-    console.log("JSON: " + r);
-    console.log('Parsed error:', error);
     return error;
   }
 }

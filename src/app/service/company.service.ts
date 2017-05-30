@@ -50,7 +50,6 @@ export class CompanyService {
     });
     let options = new RequestOptions({headers: headers});
     return this.http.put(this.companyUrl, JSON.stringify(company), options)
-      .map((res: Response) => this.mapCompany(res))
       .catch((error: any) => Observable.throw(this.mapError(error)));
   }
 
@@ -61,8 +60,18 @@ export class CompanyService {
     });
     let options = new RequestOptions({headers: headers});
     return this.http.post(this.contractorsUrl, JSON.stringify(company), options)
-      .map((res: Response) => this.mapCompany(res))
       .catch((error: any) => Observable.throw(this.mapError(error)));
+  }
+
+  deleteContractor(contractorId: number) {
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'authorization': this.authenticationService.getToken()
+    });
+    let options = new RequestOptions({headers: headers});
+    return this.http.delete(this.contractorsUrl + '/' + contractorId, options)
+      .catch((error: Response) => Observable.throw(this.mapError(error)));
   }
 
   mapCompany(response: Response): CompanyData {

@@ -23,7 +23,7 @@
     <td>{{companyData.nip}}</td>
     <td>{{companyData.regon}}</td>
     <td>
-      <button type="button" class="btn btn-primary btn-xs" (click)="openModal(companyData)">
+      <button type="button" class="btn btn-primary btn-xs" (click)="openCompanyEditionModal(companyData)">
         <i class="fa fa-pencil"></i>
       </button>
     </td>
@@ -43,7 +43,7 @@
     <th>Nip</th>
     <th>Regon</th>
     <th>
-      <button type="button" class="btn btn-success btn-xs" (click)="openModal(null)">
+      <button type="button" class="btn btn-success btn-xs" (click)="openCompanyEditionModal(null)">
         <i class="fa fa-plus"></i>
       </button>
     </th>
@@ -58,10 +58,10 @@
     <td>{{contractor.nip}}</td>
     <td>{{contractor.regon}}</td>
     <td>
-      <button type="button" class="btn btn-danger btn-xs">
+      <button type="button" class="btn btn-danger btn-xs" (click)="deleteContractor(contractor.id)">
         <i class="fa fa-times"></i>
       </button>
-      <button type="button" class="btn btn-primary btn-xs" (click)="openModal(contractor)">
+      <button type="button" class="btn btn-primary btn-xs" (click)="openCompanyEditionModal(contractor)">
         <i class="fa fa-pencil"></i>
       </button>
 

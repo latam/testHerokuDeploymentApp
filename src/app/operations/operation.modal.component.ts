@@ -7,9 +7,6 @@ import {DatePipe} from "@angular/common";
 import {KPIR_EXPENSE, KPIR_REVENUE, KpirColumn, OperationData} from "./operations.model";
 import {AuthenticationService} from "../service/authentication.service";
 import {ErrorResponse} from "../common/error.response";
-/**
- * Created by Mateusz on 19.04.2017.
- */
 
 @Component({
   selector: 'operation-modal',
@@ -20,7 +17,7 @@ export class OperationModalComponent implements OnInit{
   @Input() operation;
   @Input() title;
   date = new Date();
-  ngbDateStruct = { day: this.date.getDay(), month: this.date.getMonth(), year: this.date.getFullYear()};
+  ngbDateStruct = { day: this.date.getDate(), month: this.date.getMonth()+1, year: this.date.getFullYear()};
   companiesData: CompanyData[];
   kpirColumns: KpirColumn[];
 
@@ -69,7 +66,6 @@ export class OperationModalComponent implements OnInit{
   }
 
   set selectedContractorMod(value) {
-    console.log("Search criteria: CONTRACTOR changed - " + value.name);
     this.selectedContractor = value;
   }
 
@@ -78,14 +74,11 @@ export class OperationModalComponent implements OnInit{
   }
 
   set selectedKpirColumnMod(value) {
-    console.log("Search criteria: KPIR_COLUMN changed - " + value.name);
     this.selectedKpirColumn = value;
   }
 
   onSubmit() {
-    //let dateToFormat = Date.UTC(this.ngbDateStruct.year, this.ngbDateStruct.month, this.ngbDateStruct.day);
     let dateToFormat = this.ngbDateParserFormatter.format(this.ngbDateStruct);
-    //let stringDate = this.datePipe.transform(dateToFormat, 'yyyy-MM-dd');
     let stringDate = this.datePipe.transform(dateToFormat, 'yyyy-MM-dd');
 
     this.operation.date = stringDate;

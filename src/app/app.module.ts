@@ -27,6 +27,7 @@ import {VatRegistryService} from "./service/vatregistry.service";
 import {KpirRegistryService} from "./service/kpirregistry.service";
 
 import {CanActivateAuthGuard} from "./account/login/authguard";
+import {PeriodFilterComponent} from "./common/filter/period.filter.component";
 
 const appRoutes: Routes = [
   {
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     OperationModalComponent,
     VatRegistryComponent,
     KpirRegistryComponent,
-    DateFilterComponent
+    DateFilterComponent,
+    PeriodFilterComponent
   ],
   imports: [
     BrowserModule,

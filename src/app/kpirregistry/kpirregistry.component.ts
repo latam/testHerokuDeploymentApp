@@ -1,37 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {MONTHS, MonthStruct} from "../globals";
 import {KpirRegistryData} from "./kpirregistry.model";
 import {KpirRegistryService} from "../service/kpirregistry.service";
 
 import * as FileSaver from 'file-saver';
+import {PeriodFilterCriteria} from "../common/filter/period.filter.criteria";
+import {ErrorResponse} from "../common/error.response";
 
 @Component({
   selector: 'kpirregistry-view',
   templateUrl: './kpirregistry.component.html',
 })
-export class KpirRegistryComponent implements OnInit{
+export class KpirRegistryComponent {
   registriesData: KpirRegistryData[];
-  monthsData = MONTHS;
-  yearsData = [2015, 2016, 2017];
-  selectedMonth: MonthStruct;
-  selectedYear: number;
-  error = '';
+  periodFilterCriteria: PeriodFilterCriteria;
+  error: ErrorResponse;
+
 
   constructor(
     private registryService: KpirRegistryService,
   ) { }
 
-  ngOnInit() {
-    let yearNumber = new Date().getUTCFullYear();
-    let monthNumber = new Date().getUTCMonth();
-    this.selectedMonth = MONTHS[monthNumber];
-    this.selectedYear = yearNumber;
-    this.refreshComponent();
+  onPeriodFilterCriteriaChanged(periodFilterCriteria: PeriodFilterCriteria) {
+    this.periodFilterCriteria = periodFilterCriteria;
+    this.loadRegistryEntries();
   }
 
-  refreshComponent() {
-    this.registryService.getRegistryEntries(this.selectedMonth.monthNumber, this.selectedYear)
+  loadRegistryEntries() {
+    this.registryService.getRegistryEntries(this.periodFilterCriteria.month, this.periodFilterCriteria.year)
       .subscribe(
         registriesData => {
           this.registriesData = registriesData;
@@ -44,35 +40,15 @@ export class KpirRegistryComponent implements OnInit{
   }
 
   getReport() {
-    this.registryService.getReport(this.selectedYear)
+    this.registryService.getReport(this.periodFilterCriteria.year)
       .subscribe(
         (response) => {
-          FileSaver.saveAs(response, "KPIR_" + this.selectedYear);
+          FileSaver.saveAs(response, "KPIR_" + this.periodFilterCriteria.year);
         },
         error => {
           this.error = error;
           console.log(error);
         }
       )
-  }
-
-  get selectedMonthMod() {
-    return this.selectedMonth;
-  }
-
-  set selectedMonthMod(value) {
-    console.log("Search criteria: MONTH changed - " + value.monthText);
-    this.selectedMonth = value;
-    this.refreshComponent();
-  }
-
-  get selectedYearMod() {
-    return this.selectedYear;
-  }
-
-  set selectedYearMod(value) {
-    console.log("Search criteria: YEAR changed - " + value);
-    this.selectedYear = value;
-    this.refreshComponent();
   }
 }

@@ -3,6 +3,8 @@ import {CompanyData} from "./company.data";
 import {CompanyService} from "../../service/company.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CompanyModalComponent} from "./company.modal.component";
+import {AuthenticationService} from "../../service/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'company-form',
@@ -14,15 +16,17 @@ export class CompanyComponent implements OnInit{
   error: any;
 
   constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
     private companyService: CompanyService,
     private modalService: NgbModal
   ) { }
 
   ngOnInit() {
-    this.refreshComponent();
+    this.loadCompaniesData();
   }
 
-  openModal(companyToEdit: CompanyData) {
+  openCompanyEditionModal(companyToEdit: CompanyData) {
     let isNewCompany = false;
     if(companyToEdit == null) {
       isNewCompany = true;
@@ -33,11 +37,11 @@ export class CompanyComponent implements OnInit{
     modalRef.componentInstance.isNewCompany = isNewCompany;
     modalRef.result
       .then(() => {
-        this.refreshComponent();
+        this.loadCompaniesData();
       });
   }
 
-  refreshComponent() {
+  loadCompaniesData() {
     this.companyService.userCompany()
       .subscribe(
         companyData => {
@@ -57,5 +61,22 @@ export class CompanyComponent implements OnInit{
           this.error = <any>error;
           console.log(error);
         } );
+  }
+
+  deleteContractor(contractorId: number) {
+    this.companyService.deleteContractor(contractorId)
+      .subscribe(
+        () => {
+          this.loadCompaniesData();
+        },
+        error => {
+          this.error = error;
+          if(error.errorCode == 11) {
+            this.authenticationService.logout();
+            this.router.navigate(['login']);
+          }
+          this.loadCompaniesData();
+        }
+      );
   }
 }

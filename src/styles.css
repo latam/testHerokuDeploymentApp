@@ -49,6 +49,7 @@ div.spacer {
 
   .container.login {
     max-width: 500px;
+    margin-bottom: 5rem;
   }
 }
 

@@ -1,4 +1,6 @@
-export const BaseApiPath: string = 'https://company-management.herokuapp.com/api/';
+//export const BaseApiPath: string = 'https://company-management.herokuapp.com/api/';
+export const BaseApiPath: string = 'http://localhost:8080/api/';
+
 
 export class MonthStruct {
   constructor(
